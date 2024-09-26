@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>File Sharing System</h1>
+        <h2>Upload a file:</h2>
+        <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data"> <!--That is-->
+            <input type="file" name="file">
+            <input type="submit" value="Upload" class="btn">
+        </form>
+        <h2>Available files:</h2>
+        <ul id="file-list">
+        {% for file in files %}
+            <li>
+                <a href="{{ url_for('download_file', filename=file) }}">{{ file }}</a>
+                <div>
+                    <button onclick="showEditForm('{{ file }}')" class="btn">Edit</button>
+                    <form action="{{ url_for('delete_file', filename=file) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn" onclick="return confirm('Are you sure you want to delete this file?')">Delete</button>
+                    </form>
+                </div>
+            </li>
+            <li class="edit-form" id="edit-{{ file }}">
+                <form action="{{ url_for('edit_file', filename=file) }}" method="post">
+                    <textarea name="content" rows="4" cols="50"></textarea>
+                    <input type="submit" value="Save" class="btn">
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

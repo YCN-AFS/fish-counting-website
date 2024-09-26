@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống đếm cá</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+    <style>
+        /* .app-container {
+            max-width: 460px;
+            margin: 0 auto;
+        } */
+        #detect-fish {
+            max-width: 460px;
+            min-width: 30%;
+            margin: 0 auto;
+            flex-grow: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+    <div class="app-container">
+        <div class="content" id="count-fish">
+            <h1>Hệ thống đếm cá</h1>
+            
+            <div class="controls">
+                <input type="file" id="file-input" accept="image/*">
+                <button id="choose-file" class="btn"><i class="fas fa-file-upload"></i> <strong>  Tải ảnh</strong></button>
+                <button id="start-camera" class="btn"><i class="fas fa-camera"></i> <strong>  Chụp ảnh</strong></button>
+                <div class="url-input">
+                    <input type="text" id="image-url" placeholder="Enter image URL">
+                    <button id="load-url" class="btn"><i class="fas fa-link"></i> <strong>  Load</strong></button>
+                </div>
+            </div>
+
+            <div id="drop-area">
+                <p><i class="fas fa-fish"></i> Kéo và thả hình ảnh của bạn vào đây</p>
+                <img id="preview-image" src="" alt="Preview" style="display: none;">
+            </div>
+
+            <div id="error-message" class="error"></div>
+
+            <button id="detect-fish" class="btn btn-primary"><i class="fas fa-search"></i> <strong> Đếm cá</strong></button>
+
+            <div id="results">
+                <h2>Tổng số cá đếm được: <span id="fish-count">0</span></h2>
+            </div>
+        </div>
+
+        <div class="content" id="history" style="display: none;">
+            <h1>Lịch sử đếm cá</h1>
+            <ul id="history-list">
+                <!-- History items will be added here dynamically -->
+            </ul>
+        </div>
+
+        <div class="content" id="about" style="display: none;">
+            <h1>Giới thiệu về Hệ thống đếm cá.</h1>
+            <p>Hệ thống phát hiện cá của chúng tôi, được phát triển bởi nhóm T&A Lab thuộc trường Đại học Lạc Hồng, sử dụng công nghệ AI tiên tiến để đếm chính xác số lượng cá trong hình ảnh. Cho dù bạn là nhà sinh vật học biển, người quản lý nghề cá hay người đam mê cá, công cụ của chúng tôi đều cung cấp số lượng cá nhanh chóng và đáng tin cậy.</p>
+            <p>Đặc điểm nổi bật:</p>
+            <ul>
+                <li>Tải hình ảnh lên từ thiết bị của bạn</li>
+                <li>Sử dụng máy ảnh của bạn để phát hiện theo thời gian thực</li>
+                <li>Phân tích hình ảnh từ URL</li>
+                <li>Xem lịch sử phát hiện</li>
+            </ul>
+        </div>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-target="count-fish"><i class="fas fa-fish"></i> Count Fish</button>
+            <button class="nav-btn" data-target="history"><i class="fas fa-history"></i> History</button>
+            <button class="nav-btn" data-target="about"><i class="fas fa-info-circle"></i> About</button>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
